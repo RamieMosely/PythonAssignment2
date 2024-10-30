@@ -30,8 +30,8 @@ def getValidNumber(prompt, allowZero = True):
 
 def getPlantInfo():
     name = input("Enter your plants name!\n")
-    height = float(input("Enter the starting height!\n"))
-    growthRate = float(input("Enter daily growth rate!\n"))
+    height = getValidNumber("Enter the starting height!\n", allowZero = False)
+    growthRate = getValidNumber("Enter daily growth rate!\n", allowZero=False)
     return name, height, growthRate
 
 
