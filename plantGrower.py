@@ -12,6 +12,7 @@ class Plant:
     def getHeightAfterDays(self, days):
         return self.height + (self.growthRate * days)
 
+
 def getValidNumber(prompt, allowZero = True):
     while True:
         userInput = input(prompt)
@@ -26,11 +27,13 @@ def getValidNumber(prompt, allowZero = True):
             return number
         print("Please enter a valid number!")
 
+
 def getPlantInfo():
     name = input("Enter your plants name!\n")
     height = float(input("Enter the starting height!\n"))
     growthRate = float(input("Enter daily growth rate!\n"))
     return name, height, growthRate
+
 
 def displayPlantInfo(plant1, plant2):
     print("\nPlant Information!")
@@ -42,6 +45,7 @@ def displayPlantInfo(plant1, plant2):
     print(f"Current Height: {plant2.height:.2f} cm")
     print(f"Daily growth rate: {plant2.growthRate:.2f} cm/day")
 
+
 def compareHeights(plant1, plant2):
     days = int(input("Enter number of days!\n"))
     height1 = plant1.getHeightAfterDays(days)
@@ -49,6 +53,7 @@ def compareHeights(plant1, plant2):
 
     print(f"{plant1.name}: {height1:.2f} cm")
     print(f"{plant2.name}: {height2:.2f} cm")
+
 
 def findOvertakeDay(plant1, plant2):
     if plant1.growthRate <= plant2.growthRate and plant1.height >= plant2.height:
@@ -77,6 +82,7 @@ def findOvertakeDay(plant1, plant2):
         print(f"Height of {faster.name}: {faster.getHeightAfterDays(days):.2f} cm")
         print(f"Height of {slower.name}: {slower.getHeightAfterDays(days):.2f} cm")
 
+
 def changePlantInfo(plant1, plant2):
     while True:
         plantNum = input("Which plant would you like to modify?(1 or 2)\n")
@@ -90,4 +96,47 @@ def changePlantInfo(plant1, plant2):
     
     else:
         return plant1, Plant(name, height, growthRate)
+
+
+def displayMenu():
+    print("Menu Options:\n")
+    print("1. Display plant information")
+    print("2. Compare heights over specific days")
+    print("3. Find day when faster plant overtakes slower plant")
+    print("4. Change plant information")
+    print("5. Quit")
+
+
+
+def program():
+    print("Welcome to Ramies Plant Grower!\n")
+
+    print("Enter information for Plant 1:\n")
+    name1, height1, growthRate1 = getPlantInfo()
+    plant1 = Plant(name1, height1, growthRate1)
+
+    print("Enter information for Plant 2:\n")
+    name2, height2, growthRate2 = getPlantInfo()
+    plant2 = Plant(name2, height2, growthRate2)
+
+    while True:
+        displayMenu()
+        choice = input("Enter your choice! Select 1-5\n")
+        if choice == '1':
+            displayPlantInfo(plant1, plant2)
+        elif choice == '2':
+            compareHeights(plant1, plant2)
+        elif choice == '3':
+            findOvertakeDay(plant1, plant2)
+        elif choice == '4':
+            plant1, plant2 = changePlantInfo(plant1, plant2)
+        elif choice == '5':
+            print("Thank you for using Ramie Plant Grower! Stay green!\n")
+            break
+        else:
+            print("Invalid entry! Please try again!\n")
+
+
+#Program Start
+program()
 
